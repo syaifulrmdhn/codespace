@@ -15,7 +15,11 @@ class CreateSpacePhotosTable extends Migration
     {
         Schema::create('space_photos', function (Blueprint $table) {
             $table->id();
+            $table->UnsignedBigInteger('space_id');
+            $table->string('path');
             $table->timestamps();
+
+            $table->foreign('space_id')->references('id')->on('spaces')->onDelete('cascade');
         });
     }
 
