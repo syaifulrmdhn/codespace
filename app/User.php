@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function space()
+    public function spaces()
     {
       return $this->hasMany(Space::class,'user_id','id');
     }
