@@ -61,6 +61,24 @@
                             <strong> {{ $message }}</strong>
                         @enderror
                     </div>
+
+                    <div class="form-group increment">
+                        <label for="">Photos</label>
+                        <div class="input-group">
+                            <input type="button" name="photo[]" class="form-control">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary btn-add"><i class="fa fa-plus-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clone invisible">
+                        <div class="input-group mt-2">
+                            <input type="button" name="photo[]" class="form-control">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-danger btn-add"><i class="fa fa-minus-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary"> Submit </button>
                     {!! Form::close() !!}
                 </div>
@@ -73,5 +91,14 @@
 @push('script')
     <script type="text/javascript">
         window.action = "submit"
+        jQuery(document).ready(function () {
+            jQuery(".btn-add").click(function () {
+                let markup = jQuery(".invisible").html();
+                jQuery(".increment").append(markup);
+            });
+            jQuery("body").on("click", "btn-remove", function(){
+                jQuery(this).parents(".input-group").remove();
+            })
+        })
     </script>
 @endpush
